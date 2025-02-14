@@ -1,0 +1,54 @@
+import pygame
+import random
+
+# Initialize Pygame
+pygame.init()
+
+# Screen dimensions
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Obstacle Avoidance Robot")
+
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+
+# Robot and obstacle properties
+robot_size = 20
+robot_x, robot_y = WIDTH // 2, HEIGHT // 2
+robot_speed = 5
+
+obstacle_size = 30
+obstacle_x, obstacle_y = random.randint(0, WIDTH), random.randint(0, HEIGHT)
+
+# Main loop
+running = True
+while running:
+    screen.fill(WHITE)
+
+    # Draw robot
+    pygame.draw.rect(screen, BLACK, (robot_x, robot_y, robot_size, robot_size))
+
+    # Draw obstacle
+    pygame.draw.rect(screen, RED, (obstacle_x, obstacle_y, obstacle_size, obstacle_size))
+
+    # Move robot (simple logic to avoid obstacle)
+    if robot_x < obstacle_x:
+        robot_x += robot_speed
+    else:
+        robot_x -= robot_speed
+
+    if robot_y < obstacle_y:
+        robot_y += robot_speed
+    else:
+        robot_y -= robot_speed
+
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    pygame.display.update()
+
+pygame.quit()
