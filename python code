@@ -18,7 +18,7 @@ RED = (255, 0, 0)
 robot_size = 20
 robot_x, robot_y = WIDTH // 2, HEIGHT // 2
 robot_speed = 5
-
+#
 obstacle_size = 30
 obstacle_x, obstacle_y = random.randint(0, WIDTH), random.randint(0, HEIGHT)
 
